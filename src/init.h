@@ -6,7 +6,9 @@
 
 #include <GeoIP.h>
 #include <GeoIPCity.h>
+#if !defined(_WIN32)
 #include <unistd.h>
+#endif
 #include "nan.h"
 
 #ifndef NODE_GEOIP_INIT_H

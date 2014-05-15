@@ -61,7 +61,7 @@
       'HAVE_STDINT_H=1',
       'HAVE_ZLIB_H=1',
       'HAVE_GETOPT=1',
-      'HAVE_GETTIMEOFDAY=1',
+      #'HAVE_GETTIMEOFDAY=1',
       'HAVE_PREAD=1',
       'HAVE_VASPRINTF=1',
       'HAVE_VSNPRINTF=1',
@@ -81,6 +81,7 @@
     'conditions': [
       ['OS=="win"', {
         'defines': [
+		'_WIN32'
         ]
       }]
     ],

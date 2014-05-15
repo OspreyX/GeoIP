@@ -71,12 +71,11 @@ NAN_METHOD(Country6::lookupSync) {
   Local<Object> data = NanNew<Object>();
   Local<String> host_str = args[0]->ToString();
   size_t size = host_str->Length() + 1;
-  char host_cstr[size];
   size_t bc;
-
-  NanCString(args[0], &bc, host_cstr, size);
+  char *host_cstr = NanCString(args[0], &bc);
 
   geoipv6_t ipnum_v6 = _GeoIP_lookupaddress_v6(host_cstr);
+  delete[] host_cstr;
 
   if (__GEOIP_V6_IS_NULL(ipnum_v6)) {
     NanReturnValue(NanNull());

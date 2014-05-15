@@ -67,11 +67,11 @@ NAN_METHOD(Country::lookupSync) {
   Local<Object> data = NanNew<Object>();
   Local<String> host_str = args[0]->ToString();
   size_t size = host_str->Length() + 1;
-  char host_cstr[size];
   size_t bc;
-  NanCString(args[0], &bc, host_cstr, size);
+  char *host_cstr = NanCString(args[0], &bc);
 
   uint32_t ipnum = _GeoIP_lookupaddress(host_cstr);
+  delete[] host_cstr;
 
   if (ipnum <= 0) {
     NanReturnValue(NanNull());
